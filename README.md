@@ -4,6 +4,7 @@ In this project I used the AWS Cloudformation, AWS EKS, CircleCI and Docker
 
 
 Application
+
 My application is a simple “Hello World” application. I used the below sequence to deploy my application
 
 1- CloudFormation to create infrastructure. This infrastructure is created only one time.
