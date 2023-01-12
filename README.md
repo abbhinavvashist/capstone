@@ -16,3 +16,19 @@ aws cloudformation create-stack  --stack-name FinalProjectmyNetwork --region us-
 b.	Servers infrastructure including: 1 EKS cluster and 1 bastion host to test and administrate my EKS cluster (InfrastructureCreation/Servers.yml)
 
 aws cloudformation create-stack  --stack-name FinalProjectmyServers --region us-east-1 --template-body file://Servers.yml  --parameters file://Servers-parameters.json --capabilities CAPABILITY_NAMED_IAM
+
+2- CircleCI CI/CD to auto deploy my application if any change done using the following sequence
+
+a.	code linting
+
+b.	docker code building
+
+c.	docker code uploading to docker hub
+
+d.	deploy new image from docker hub to my EKS cluster
+
+Output
+
+I can use my cluster endpoint to check the running application.
+
+
