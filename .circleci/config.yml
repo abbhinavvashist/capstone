@@ -1,0 +1,39 @@
+version: 2.1
+
+jobs:
+  build-docker-image:
+    docker:
+      - image: circleci/python:3.7.3
+    steps:
+      - checkout
+      - run:
+          name: install dependencies
+          command: |
+            python3 -m venv ~/.devops
+            source ~/.devops/bin/activate
+      - run:
+          name: code linting 
+          command: |      
+            source ~/.devops/bin/activate
+            make install
+            make lint   
+      - setup_remote_docker:
+          docker_layer_caching: true            
+      - run:
+          name: docker code building 
+          command: |   
+            source ~/.devops/bin/activate          
+            docker build --tag=my_hello_world .
+            docker image ls	  
+      - run:
+          name: docker code uploading  
+          command: |   
+            docker image ls	 
+            docker login -u $DOCKER_USER -p $DOCKER_PASS
+            docker tag my_hello_world $DOCKER_USER/my_hello_world
+            docker push abbhinavvashist/my_hello_world:latest
+
+workflows:
+  default:
+    jobs:
+      - build-docker-image 
