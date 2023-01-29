@@ -33,12 +33,12 @@ Resources:
                   sudo mv /tmp/eksctl /usr/bin
                   aws eks update-kubeconfig --name PROD --region us-east-1
           ImageId: !Ref AMItoUse
-          InstanceType: t2.medium          
+          InstanceType: t3.large          
           KeyName: capstone
           BlockDeviceMappings:
           - DeviceName: "/dev/sdk"
             Ebs:
-             VolumeSize: '10'     
+             VolumeSize: '30'     
           NetworkInterfaces: 
             - AssociatePublicIpAddress: "true"
               DeviceIndex: "0"
